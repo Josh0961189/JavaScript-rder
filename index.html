@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="fav/favicon.ico">
+    <title>Grade Average</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: gray;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.936);
+            padding: 20px;
+            max-width: 400px;
+            width: 400%;
+            text-align: center;
+        }
+        h1 {
+            color: indigo;
+            text-align: center;
+            border-radius: 10%;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 5px solid white;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: indigo;
+        }
+        .average {
+            font-size: 1.2em;
+            color: white;
+        }
+        button{
+            font-family: 'Times New Roman', Times, serif;
+            background-color: indigo;
+            color: white;
+            text-align: center;
+            border-radius: 10%;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grade Average Calculator</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody id="grades-table">
+                
+            </tbody>
+        </table>
+        <button onclick="calculateAverage()">Calculate Average</button>
+        <div class="average" id="average-grade">Average Grade: </div>
+    </div>
+    
+    <script>
+    
+        const grades = {
+            "Web System": 79,
+            "Fitt2": 90,
+            "NSTP2": 79,
+            "STS": 78,
+            "Modern World": 82,
+        };
+
+        
+        function calculateAverage() {
+            const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
+            const average = (total / Object.values(grades).length).toFixed(2);
+            document.getElementById('average-grade').textContent = "Average Grade: " + average;
+        }
+
+        // Insert grades into the table
+        const gradesTable = document.getElementById('grades-table');
+ for (const [subject, grade] of Object.entries(grades)) {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td>${subject}</td><td>${grade}</td>`; // Corrected line
+    gradesTable.appendChild(row);
+}
+    </script>
+</body>
+</html>
